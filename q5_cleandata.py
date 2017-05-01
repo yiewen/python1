@@ -48,8 +48,6 @@ for item in datalist:
     t1=str(d.hour)+":"+str(d.minute)+":"+str(d.second)
     item[1]=d1
     item.insert(2,t1)
-
-print datalist
     
 filename=r"C:\Users\yihu\Desktop\clean_data.csv"
 
