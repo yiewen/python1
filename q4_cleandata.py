@@ -12,7 +12,7 @@ import re
 datalist=[]
 
 n=4538
-while n<=5228:
+while n<=9228:
     url1='http://gpd01.cityofboston.gov:6080/arcgis/rest/services/all_crashes_analysis/MapServer/6/query?f=json&where=Date%20LIKE%20%27%252016%25%27&returnGeometry=true&spatialRel=esriSpatialRelIntersects&&outFields=Incident, Date, Mode,Count&outSR=102100&objectIds='+str(n)
     res= requests.get(url1)
     select_result=[]
