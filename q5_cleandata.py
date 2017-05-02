@@ -49,7 +49,7 @@ for item in datalist:
     item[1]=d1
     item.insert(2,t1)
     
-filename=r"C:\Users\yihu\Desktop\clean_data.csv"
+filename=r"C:\Users\yihu\Desktop\clean_data2.csv" 
 
 def writecsv(filename,data):
     fields=["Incident","Date","Time","Mode","Count","latitude","longitude"]
