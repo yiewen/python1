@@ -10,18 +10,18 @@ import csv
 import re
 
 datalist=[]
-
+# extract the data from url
 n=4538
 while n<=9228:
     url1='http://gpd01.cityofboston.gov:6080/arcgis/rest/services/all_crashes_analysis/MapServer/6/query?f=json&where=Date%20LIKE%20%27%252016%25%27&returnGeometry=true&spatialRel=esriSpatialRelIntersects&&outFields=Incident, Date, Mode,Count&outSR=102100&objectIds='+str(n)
-    res= requests.get(url1)
+    res= requests.get(url1)# get the data
     select_result=[]
-    result=re.findall(r"attributes\":{(.+?)]",res.content)
+    result=re.findall(r"attributes\":{(.+?)]",res.content) #find the useful information
     str_result="".join(str(x) for x in result)
-    result2=re.findall(r"Incident\":\"(.+?)\"|Date\":\"(.+?)\"|Mode\":\"(.+?)\"|Count\":(.+?)}",str_result)
-    result3=re.findall(r"\"y\":(.+?)}",str_result)
-    result4=re.findall(r"\"x\":(.+?),",str_result)
-    for info in result2:
+    result2=re.findall(r"Incident\":\"(.+?)\"|Date\":\"(.+?)\"|Mode\":\"(.+?)\"|Count\":(.+?)}",str_result)#find the information
+    result3=re.findall(r"\"y\":(.+?)}",str_result)# get latitude
+    result4=re.findall(r"\"x\":(.+?),",str_result)# get longitude
+    for info in result2: # delete the data has no value
         c=0
         while c<4:
             if info[c]=="":
@@ -41,8 +41,10 @@ while n<=9228:
     for i in final_list:
         datalist.append(i)
     n=n+1
+   
 filename=r"C:\Users\yihu\Desktop\clean_data.csv"
 
+# write csv file
 def writecsv(filename,data):
     fields=["Incident","Date","Mode","Count","Geometry"]
     with open(filename,"wb") as f:
